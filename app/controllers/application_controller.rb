@@ -12,3 +12,4 @@ class ApplicationController < Sinatra::Base
   get '/' do
     "hello from round two"
   end
+end
