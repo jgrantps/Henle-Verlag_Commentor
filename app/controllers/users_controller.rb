@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   post '/select' do
     binding.pry
 
-    iii = Alphabetized.create(initial: params[:composer_initial])
+    iii = Alphabetized.new(params[:composer_initial])
+    binding.pry
     erb :'composer'
   end
 end
