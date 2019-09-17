@@ -14,20 +14,25 @@ attr_reader :initial
    @@all 
  end 
 
+ def scrape_page
   site = "https://www.henle.de/us/search/?Composers=#{@initial}"
-  page = Nokogiri::HTML(open(site))
-  composers = []
+  @page = Nokogiri::HTML(open(site))
+  @composers = []
   @composer_list = []
-  @composer_url = []
 
-  page.css("form.form-sort select.select-sort option").each {|t| composers<<t.text}
-
-  composers.select do |t|
-    if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
-      @composer_list<<t
+    @page.css("form.form-sort select.select-sort option").each {|element| @composers<<element.text}  
+    @composers.select do |t|
+      if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
+        @composer_list<<t
+      end
     end
+    @composer_list
   end
 
-  @composer_list.each {|composer| @composer_url << "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")}
-  binding.pry
+  def composer_urls
+    composer_url = []
+    @composer_list.each {|composer| composer_url << "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")}
+    composer_url
+    binding.pry
+  end
 end
