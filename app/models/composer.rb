@@ -1,4 +1,5 @@
 class Composer < ActiveRecord::Base
+  belongs_to :alphabetized
   has_many :works
   has_many :subcategories, through: :works
   has_many :categories, through: :subcategories
