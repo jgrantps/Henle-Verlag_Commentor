@@ -11,8 +11,8 @@ attr_reader :initial
  end
 
  def self.all
-   @@all 
- end 
+   @@all
+ end
 
  def scrape_page
   site = "https://www.henle.de/us/search/?Composers=#{@initial}"
@@ -20,7 +20,7 @@ attr_reader :initial
   @composers = []
   @composer_list = []
 
-    @page.css("form.form-sort select.select-sort option").each {|element| @composers<<element.text}  
+    @page.css("form.form-sort select.select-sort option").each {|element| @composers<<element.text}
     @composers.select do |t|
       if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
         @composer_list<<t
