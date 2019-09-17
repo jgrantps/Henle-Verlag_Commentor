@@ -2,7 +2,9 @@
 require 'open-uri'
 
 class Scraper < ActiveRecord::Base
-  site = "https://www.henle.de/us/search/?Composers=T"
+
+  def initialize(initial)
+  site = "https://www.henle.de/us/search/?Composers=#{initial.upcase}"
   page = Nokogiri::HTML(open(site))
   albums = page.css("div.result-column-left.clearfix")
 

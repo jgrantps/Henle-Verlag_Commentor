@@ -10,6 +10,23 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    "hello from round two.two"
+    erb :index
   end
+
+  helpers do
+      # def signup_form_incomplete?(params)
+      #   (params[:username].empty? || params[:email].empty? || params[:password].empty?)
+      # end
+
+      def current_user
+        @current_user ||= User.find_by(id: session[:user_id])
+      end
+
+      def logged_in?
+        !!current_user
+      end
+
+    end
+
+
 end
