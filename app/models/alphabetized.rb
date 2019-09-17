@@ -8,6 +8,9 @@ attr_reader :initial
  def initialize(initial)
   @initial = initial
   @@all<<@initial
+    if !self.class.all.include?(initial)
+      scrape_page
+    end
  end
 
  def self.all
@@ -15,24 +18,24 @@ attr_reader :initial
  end
 
  def scrape_page
+   composers = []
   site = "https://www.henle.de/us/search/?Composers=#{@initial}"
-  @page = Nokogiri::HTML(open(site))
-  @composers = []
-  @composer_list = []
+  page = Nokogiri::HTML(open(site))
+  composer_list = []
 
-    @page.css("form.form-sort select.select-sort option").each {|element| @composers<<element.text}
-    @composers.select do |t|
+    page.css("form.form-sort select.select-sort option").each {|element| composers<<element.text}
+    composers.select do |t|
       if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
-        @composer_list<<t
+        composer_list<<t
       end
     end
-    @composer_list
+    add_to_db(composer_list)
   end
 
-  def composer_urls
-    composer_url = []
-    @composer_list.each {|composer| composer_url << "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")}
-    composer_url
-    binding.pry
+  def add_to_db(composer_list)
+    composer_list.each do |composer|
+      url = "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")
+      Composer.create(:name => composer, :composer_url => url)
+    end
   end
 end
