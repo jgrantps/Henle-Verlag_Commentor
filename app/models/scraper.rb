@@ -1,5 +1,9 @@
-class Scraper < ActiveRecord::Base
 
+require 'open-uri'
+
+class Scraper < ActiveRecord::Base
+  site = "https://www.henle.de/us/search/?Composers=T"
+  page = Nokogiri::HTML(open(site))
   albums = page.css("div.result-column-left.clearfix")
 
   puts albums.count
