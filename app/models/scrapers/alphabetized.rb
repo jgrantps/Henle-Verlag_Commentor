@@ -13,9 +13,7 @@ class Alphabetized < ActiveRecord::Base
   @composer_list = []
   @composer_url = []
 
-  page.css("form.form-sort select.select-sort option").each do |t|
-    composers<<t.text
-  end
+  page.css("form.form-sort select.select-sort option").each {|t| composers<<t.text}
 
   composers.select do |t|
     if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
@@ -24,4 +22,5 @@ class Alphabetized < ActiveRecord::Base
   end
 
   @composer_list.each {|composer| @composer_url << "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")}
+binding.pry
 end
