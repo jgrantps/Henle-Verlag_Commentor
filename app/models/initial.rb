@@ -9,7 +9,7 @@ validates :initial, format: { with: /(^[a-zA-Z]\b$)/,
 has_many :composers
 
 extend ActiveModel::Callbacks
-after_initialize :scrape_page
+after_create :scrape_page
 
  def scrape_page
   composers = []
@@ -29,8 +29,9 @@ after_initialize :scrape_page
   def add_to_db(composer_list)
     composer_list.each do |composer|
       url = "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")
-      Composer.find_or_create_by(:name => composer, :composer_url => url, :composer_initial => self[:initial], :composer_initial_id => self[:id] )
+      Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
     end
+    binding.pry
   end
 
 end

@@ -3,7 +3,6 @@ class CreateComposers < ActiveRecord::Migration
     create_table :composers do |t|
       t.string :name
       t.string :url
-      t.string :initial
       t.integer :initial_id
       t.timestamps null: false
 
