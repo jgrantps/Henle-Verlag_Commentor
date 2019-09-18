@@ -1,1 +1,16 @@
 <h2>Here are all the composers:</h2>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<% if @initial.errors.any? %>
+  <div id="error_explanation">
+    <h2>We've encountered an error that has prohibited this query from executing:</h2>
+    <ul>
+    <% @initial.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

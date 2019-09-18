@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20190918104341) do
 
-  create_table "Alphabetizeds", force: :cascade do |t|
-    t.string   "initial"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end

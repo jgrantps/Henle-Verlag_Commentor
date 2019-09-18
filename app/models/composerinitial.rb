@@ -1,5 +1,11 @@
 require "open-uri"
 class ComposerInitial < ActiveRecord::Base
+validates :initial, :presence => true
+validates :initial, :length => {:maximum => 1}
+validates :initial, format: { with: /(^[a-zA-Z]\b$)/,
+  message: "is to only be the first letter of a composers last name" }
+
+
 has_many :composers
 
 extend ActiveModel::Callbacks
