@@ -18,10 +18,10 @@ class Composer < ActiveRecord::Base
   after_create :scrape_page
 
    def scrape_page
+
      binding.pry
      site = self.url
      page = Nokogiri::HTML(open(site))
-
      albums = page.css("div.result-column-left.clearfix")
 
      albums.each do |album|
@@ -33,12 +33,12 @@ class Composer < ActiveRecord::Base
        album.css("ul.breadcrumb").each do |breadcrumb|
          category = breadcrumb.css("li")[0].text
          subcategory = breadcrumb.css("li")[1].text
-
-         binding.pry
+binding.pry
          @work_category = Category.find_or_create_by(:name => category)
-         @work_subcategory = Subcategory.find_or_create_by(:name => subcategory, :category_id => self.category.id)
-         binding.pry
-         Work.find_or_create_by(:title => title, :image_url => "https://www.henle.de#{image_link}", :link_url => "https://www.henle.de#{showpage_link}", :composer_id => self.id, :subcategory_id => @work_subcategory.id)
+binding.pry
+         @work_subcategory = Subcategory.find_or_create_by(:name => subcategory, :category_id => Category.last.id)
+binding.pry
+         Work.find_or_create_by(:name => title, :image_url => "https://www.henle.de#{image_link}", :link_url => "https://www.henle.de#{showpage_link}", :composer_id => self.id, :subcategory_id => @work_subcategory.id)
        end
      end
    end

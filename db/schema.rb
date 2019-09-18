@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20190918104341) do
   end
 
   create_table "works", force: :cascade do |t|
-    t.string  "title"
+    t.string  "name"
     t.string  "image_url"
     t.string  "link_url"
     t.integer "composer_id"
