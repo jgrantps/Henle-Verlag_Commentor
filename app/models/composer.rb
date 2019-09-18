@@ -1,4 +1,6 @@
 require "open-uri"
+require_relative './concerns/slugify.rb'
+
 class Composer < ActiveRecord::Base
 
   belongs_to :initial
@@ -9,8 +11,8 @@ class Composer < ActiveRecord::Base
   has_many :favorites, through: :favorited_works
   has_many :users, through: :favorites
 
-  include Concerns::Slug
-  extend Concerns::Find_by_slug
+  include Concerns::InstanceMethods
+  extend Concerns::ClassMethods
   extend ActiveModel::Callbacks
 
   after_create :scrape_page

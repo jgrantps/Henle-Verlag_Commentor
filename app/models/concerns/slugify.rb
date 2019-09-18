@@ -3,7 +3,7 @@ module Concerns
   module InstanceMethods
 
     def slug
-      self.username.downcase.gsub(/[^\w\d\s]/, "").gsub(/[\s]/, "-")
+      self.name.downcase.gsub(/[^\w\d\s]/, "").gsub(/[\s]/, "-")
     end
 
   end
