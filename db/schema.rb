@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190917164220) do
+ActiveRecord::Schema.define(version: 20190918104341) do
 
   create_table "Alphabetizeds", force: :cascade do |t|
     t.string   "initial"
@@ -31,9 +31,17 @@ ActiveRecord::Schema.define(version: 20190917164220) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "composer_initials", force: :cascade do |t|
+    t.string   "initial"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "composers", force: :cascade do |t|
     t.string "name"
     t.string "composer_url"
+    t.string "composer_inital"
   end
 
   create_table "favorited_works", force: :cascade do |t|
