@@ -31,7 +31,7 @@ after_create :scrape_page
       url = "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")
       Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
     end
-    binding.pry
+
   end
 
 end
