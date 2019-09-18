@@ -25,17 +25,13 @@ ActiveRecord::Schema.define(version: 20190918104341) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "composer_initials", force: :cascade do |t|
-    t.string   "initial"
+  create_table "composers", force: :cascade do |t|
+    t.string   "name"
     t.string   "url"
+    t.string   "initial"
+    t.integer  "initial_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "composers", force: :cascade do |t|
-    t.string "name"
-    t.string "composer_url"
-    t.string "composer_inital"
   end
 
   create_table "favorited_works", force: :cascade do |t|
@@ -46,6 +42,13 @@ ActiveRecord::Schema.define(version: 20190918104341) do
   create_table "favorites", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
+  end
+
+  create_table "initials", force: :cascade do |t|
+    t.string   "initial"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subcategories", force: :cascade do |t|

@@ -1,6 +1,6 @@
-class CreateComposerInitials < ActiveRecord::Migration
+class CreateInitials < ActiveRecord::Migration
   def change
-    create_table :composer_initials do |t|
+    create_table :initials do |t|
       t.string :initial
       t.string :url
       t.timestamps null: false

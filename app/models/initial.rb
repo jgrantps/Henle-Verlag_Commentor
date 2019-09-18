@@ -1,5 +1,5 @@
 require "open-uri"
-class ComposerInitial < ActiveRecord::Base
+class Initial < ActiveRecord::Base
 validates :initial, :presence => true
 validates :initial, :length => {:maximum => 1}
 validates :initial, format: { with: /(^[a-zA-Z]\b$)/,
@@ -29,7 +29,7 @@ after_initialize :scrape_page
   def add_to_db(composer_list)
     composer_list.each do |composer|
       url = "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")
-      Composer.find_or_create_by(:name => composer, :composer_url => url)
+      Composer.find_or_create_by(:name => composer, :composer_url => url, :composer_initial => self[:initial], :composer_initial_id => self[:id] )
     end
   end
 

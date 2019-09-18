@@ -1,5 +1,5 @@
 class Composer < ActiveRecord::Base
-  belongs_to :composer_initial
+  belongs_to :initial
   has_many :works
   has_many :subcategories, through: :works
   has_many :categories, through: :subcategories

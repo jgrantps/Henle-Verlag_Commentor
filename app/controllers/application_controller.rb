@@ -1,5 +1,4 @@
 require './config/environment'
-use Rack::Flash
 
 class ApplicationController < Sinatra::Base
 
@@ -7,7 +6,8 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "fwitter_lab_session_key"
+
+    set :session_secret, "henle_verlag_urtext"
   end
 
   get '/' do
