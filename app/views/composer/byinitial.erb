@@ -1,7 +1,7 @@
 <h1> Composers in the Catalog that start with the letter <%=@initial.initial%>:</h1>
 <ul>
   <%@initial.composers.all.each do |composer|%>
-  <%binding.pry%>
+  <!-- <%binding.pry%> -->
   <a href="/composer/feature/<%=composer.slug%>" value="slug"> <%=composer.name%></a><br>
   <%end%>
 

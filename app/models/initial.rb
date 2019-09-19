@@ -29,10 +29,10 @@ after_create :scrape_page
   def add_to_db(composer_list)
     composer_list.each do |composer_original_format|
       composer = URI.parse "#{URI.encode(composer_original_format)}"
-      binding.pry
+      # binding.pry
       # url = URI.parse "example.com/city/#{URI.encode('"https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")')}"
-      url = "https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")
-      Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
+      url = "https://www.henle.de/en/search/?Composers="+"#{composer}"#.gsub(" ", "+")
+      Composer.find_or_create_by(:name => composer_original_format, :url => url, :initial_id => self[:id] )
     end
 
   end
