@@ -10,7 +10,7 @@ use Rack::Flash
 
   get '/composer/feature/:slug' do
     @composer = Composer.find_by_slug(params[:slug])
-    # @works = Work.find_or_create_by()
+    @composer.scrape_page
     erb :'/composer/composer'
   end
 end

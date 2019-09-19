@@ -13,9 +13,8 @@ class Composer < ActiveRecord::Base
 
   include Concerns::InstanceMethods
   extend Concerns::ClassMethods
-  extend ActiveModel::Callbacks
 
-  after_create :scrape_page
+
 
    def scrape_page
 
