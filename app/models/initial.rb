@@ -32,6 +32,7 @@ after_create :scrape_page
       # binding.pry
       # url = URI.parse "example.com/city/#{URI.encode('"https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")')}"
       url = "https://www.henle.de/en/search/?Composers="+"#{composer}"#.gsub(" ", "+")
+      binding.pry
       Composer.find_or_create_by(:name => composer_original_format, :url => url, :initial_id => self[:id] )
     end
 

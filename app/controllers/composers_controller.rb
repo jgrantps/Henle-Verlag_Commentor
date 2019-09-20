@@ -4,7 +4,6 @@ use Rack::Flash
 
   get '/composer/:id' do
     @initial = Initial.find_by(:initial => params[:id])
-    binding.pry
       erb :'/composer/byinitial'
   end
 
