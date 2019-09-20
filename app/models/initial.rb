@@ -13,27 +13,20 @@ after_create :scrape_page
 
  def scrape_page
   composers = []
-  composer_list = []
+
   site = "https://www.henle.de/us/search/?Composers=#{self[:initial]}"
   page = Nokogiri::HTML(open(site))
-  page.css("form.form-sort select.select-sort option").each {|element| composers<<element.text}
+  page.css("h2.section-header span").each {|element| composers<<element.text}
 
-  composers.select do |t|
-    if !(t.include?("Sort by composer")||t.include?("Sort by scoring")||t.include?("Sort by price")||t.include?("All composers"))
-      composer_list<<t
-    end
-  end
-  add_to_db(composer_list)
+  add_to_db(composers)
  end
 
-  def add_to_db(composer_list)
-    composer_list.each do |composer_original_format|
-      composer = URI.parse "#{URI.encode(composer_original_format)}"
-      # binding.pry
-      # url = URI.parse "example.com/city/#{URI.encode('"https://www.henle.de/en/search/?Composers="+composer.gsub(" ", "+")')}"
-      url = "https://www.henle.de/en/search/?Composers="+"#{composer}"#.gsub(" ", "+")
+  def add_to_db(composers)
+    composers.each do |composer|
+      composer_formatted = URI.parse "#{URI.encode(composer)}"
+      url = "https://www.henle.de/en/search/?Composers="+"#{composer_formatted}"#.gsub(" ", "+")
+      Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
       binding.pry
-      Composer.find_or_create_by(:name => composer_original_format, :url => url, :initial_id => self[:id] )
     end
 
   end
