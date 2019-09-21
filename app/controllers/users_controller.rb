@@ -2,6 +2,12 @@ require 'rack-flash'
 class UsersController < ApplicationController
 use Rack::Flash
 
+
+
+
+
+
+
   get '/select' do
     erb :'user/select'
   end
