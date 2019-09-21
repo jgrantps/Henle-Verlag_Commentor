@@ -1,17 +1,13 @@
 class UsersController < ApplicationController
 
-
 get '/signup' do
   erb :'user/signup'
 end
 
 post '/signup' do
   @user = User.new(params)
-  binding.pry
 
   if @user.save
-    binding.pry
-
     session[:user_id] = @user.id
     redirect to :'user/#{@user.slug}'
   else
@@ -41,19 +37,16 @@ end
 
 get '/user/:slug' do
   @user = User.find_by_slug(params[:slug])
-  binding.pry
   erb :'user/profile'
 end
 
-
-
-
-  get '/logout' do
-    if logged_in?
-       session.clear
-       redirect "/login"
-     else
-       redirect '/'
-     end
+get '/logout' do
+  if logged_in?
+    session.clear
+    redirect "/login"
+  else
+    redirect '/'
   end
+end
+
 end

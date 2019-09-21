@@ -27,9 +27,7 @@ after_create :scrape_page
       composer_formatted = URI.parse "#{URI.encode(last_first)}"
       url = "https://www.henle.de/en/search/?Composers="+"#{composer_formatted}"
       Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
-      binding.pry
     end
-
   end
 
 end

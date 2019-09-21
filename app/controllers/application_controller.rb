@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/test' do
-    erb :test
+    erb :"templates/unit_block"
   end
 
   helpers do

@@ -4,15 +4,13 @@
     <title>Henle Commentor</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
   </head>
-  <body>
+  <body class="body">
 
-    <div class="container">
+<div class="container">
 
 <% if logged_in? %>
-  <div class="nav">
-    <a href="/logout"><button type="button">Log out</button></a>
-    <a href="//new"><button type="button"></button></a>
-  </div>
+<%= erb :alphabet_banner %>
+
 <% else %>
   <div class="nav">
     <a href="/login"><button type="button">Log In</button></a>
