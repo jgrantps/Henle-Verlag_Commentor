@@ -9,7 +9,11 @@ use Rack::Flash
 
   get '/composer/feature/:slug' do
     @composer = Composer.find_by_slug(params[:slug])
-    @composer.scrape_page
+
+    if @composer.works.empty?
+      @composer.scrape_page
+    end
+
     erb :'/composer/composer'
   end
 end

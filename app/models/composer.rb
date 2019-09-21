@@ -14,13 +14,12 @@ class Composer < ActiveRecord::Base
   include Concerns::InstanceMethods
   extend Concerns::ClassMethods
 
-
-
    def scrape_page
 
      site = self.url
      page = Nokogiri::HTML(open(site))
      albums = page.css("div.result-column-left.clearfix")
+
 
      albums.each do |album|
        showpage_link = album.css("figure.result-cover a").attribute("href").value

@@ -1,13 +1,12 @@
 <h1> this is the composer show page</h1>
 <h2><%=@composer.name%></h2>
-
 <li>
 <%@composer.works.each do |work| %>
 <h3><%=work.subcategory.category.name%> -- <%=work.subcategory.name%> </h3><br>
 <%=work.name%><br>
 <img src="<%=work.image_url%>" alt="<%=work.name%> front cover."><br>
 <a href="<%=work.link_url%>" target="_blank">Details</a>
-<%binding.pry%>
+
 
 <% end %>
 </li>
