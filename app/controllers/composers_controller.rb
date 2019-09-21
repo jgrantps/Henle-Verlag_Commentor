@@ -1,6 +1,4 @@
-require 'rack-flash'
 class ComposersController < ApplicationController
-use Rack::Flash
 
 get '/select' do
   erb :'composer/select'
