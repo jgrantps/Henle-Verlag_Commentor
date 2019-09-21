@@ -35,6 +35,15 @@ post '/login' do
   end
 end
 
+post '/user/post' do
+  if params[:add_to_favorites?] == "on"
+    @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :name => "#{current_user.name}'s list of favorites")
+    if
+    @favorite_item = FavoritedWork.create(:work_id => params[:work_id], :favorite_id => current_user.favorites)
+  @user.
+
+end
+
 get '/user/:slug' do
   @user = User.find_by_slug(params[:slug])
   erb :'user/profile'
