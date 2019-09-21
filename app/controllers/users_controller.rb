@@ -4,25 +4,26 @@ use Rack::Flash
 
 
 get '/signup' do
-  erb :signup
+  erb :'user/signup'
 end
 
 post '/signup' do
+  binding.pry
   @user = User.new(params)
 
   if @user.save
       session[:user_id] = @user.id
       redirect to 'users/profile'
     else
-      redirect to 'users/signup'
+      redirect to 'user/signup'
     end
 end
 
 get '/login' do
   if logged_in?
-      redirect to 'users/profile'
+      redirect to 'user/profile'
     else
-      erb :'users/login'
+      erb :'user/login'
     end
 end
 
@@ -31,7 +32,7 @@ post '/login' do
 
   if @user && @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    redirect 'users/profile'
+    redirect 'user/profile'
   else
     redirect "/login"
   end
