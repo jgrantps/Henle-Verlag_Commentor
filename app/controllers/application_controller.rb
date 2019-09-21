@@ -14,10 +14,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/test' do
+    erb :test
+  end
 
   helpers do
       # def signup_form_incomplete?(params)
-      #   (params[:username].empty? || params[:email].empty? || params[:password].empty?)
+      #   (params[:name].empty? || params[:email].empty? || params[:password].empty?)
       # end
 
       def current_user

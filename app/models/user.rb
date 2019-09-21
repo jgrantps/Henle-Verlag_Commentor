@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :favorites
 
-  validates :username, :email, :password, presence: true, on: :create
+  validates :name, :email, :password, presence: true, on: :create
   validates :email, uniqueness: true, on: :create
 
   include Concerns::InstanceMethods
