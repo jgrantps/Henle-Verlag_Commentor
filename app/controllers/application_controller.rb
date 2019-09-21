@@ -14,9 +14,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/signup' do
-    erb :signup
-  end
 
   helpers do
       # def signup_form_incomplete?(params)
