@@ -6,7 +6,7 @@ end
 
 post '/signup' do
   @user = User.new(params)
-
+binding.pry
   if @user.save
     session[:user_id] = @user.id
     redirect to :'user/#{@user.slug}'
@@ -36,13 +36,13 @@ post '/login' do
 end
 
 post '/user/post' do
+  binding.pry
   if params[:add_to_favorites?] == "on"
-    @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :name => "#{current_user.name}'s list of favorites")
-    if
-    @favorite_item = FavoritedWork.create(:work_id => params[:work_id], :favorite_id => current_user.favorites)
-  @user.
-
-end
+    binding.pry
+    @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :work_id => params[:work_id])
+    binding.pry
+  end
+  end
 
 get '/user/:slug' do
   @user = User.find_by_slug(params[:slug])

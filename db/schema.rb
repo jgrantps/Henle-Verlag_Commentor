@@ -33,13 +33,8 @@ ActiveRecord::Schema.define(version: 20190918104341) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "favorited_works", force: :cascade do |t|
-    t.integer "favorite_id"
-    t.integer "work_id"
-  end
-
   create_table "favorites", force: :cascade do |t|
-    t.string  "name"
+    t.integer "work_id"
     t.integer "user_id"
   end
 
