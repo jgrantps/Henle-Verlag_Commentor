@@ -1,10 +1,10 @@
-<h1> this is the composer show page</h1>
-<h2><%=@composer.name%></h2>
+<div class="title-buffer">
+<h2> this is the composer show page</h2>
+<h2><a class="reference_link" href="<%=@composer.url%>" target="_blank"><%=@composer.name.gsub(",","")%></a></h2>
+</div>
 <li>
 <%@composer.works.each do |work| %>
 <%@work = work%>
 <%= erb :"templates/import_sandbox"%>
 <% end %>
 </li>
-
-<h3><a href="<%=@composer.url%>" target="_blank">reference page</a></h3>

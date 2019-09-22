@@ -1,0 +1,82 @@
+<div class="section">
+  <div class="unit-block">
+      <div class="lefty">
+        <div class="lefty_upper">
+          <div class="sub_category-wrapper">
+            <h6 class="category_subcategory_attr"><%= @work.subcategory.category.name%> &gt; <%= @work.subcategory.name %></h6>
+          </div>
+          <img src="<%= @work.image_url %>" height="258" alt="<%= @work.name %>" class="image">
+          <h5 class="details_attr"><a  class="click_for_details" href="<%= @work.link_url%>" target="_blank">CLICK HERE FOR DETAILS</a></h5>
+        </div>
+      <div class="favorites_list_wrapper">
+        <h5>Considered a favorite by:</h5>
+        <ul class="list">
+          <%if @work.favorites.empty? %>
+            <li><div><%="No one yet.. be the first to favorite!"%></div></li>
+          <%else%>
+            <% @work.favorites.each do |t|%>
+              <% fan = User.find(t.user_id)%>
+              <li class="list-item"><div><%= fan.name%></div></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+
+    <div class="righty">
+      <div class="righty_upper">
+        <h4 class="name_attr"><%= @work.name %></h4>
+      </div>
+
+      <div class="form-block w-form">
+        <form action ="/user/post" method="POST" class="form">
+          <input id="hidden" type="hidden" name="work_id" value="<%=@work.id%>">
+          <label for="comments" class="commentry_title">comment:</label>
+          <textarea name="comments" maxlength="5000" id="comments" class="textarea w-input"></textarea>
+          <div class="form_submit_button_block">
+            <input type="submit" value="Submit" data-wait="Please wait..." class="comment_submit w-button">
+            <label class="w-checkbox favorites_checkbox">
+
+              <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id })  %>
+                <input type="checkbox" id="checkbox" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                 <span class="checkbox-label w-form-label">Remove From Favorites</span>
+              <% else %>
+                 <input type="checkbox" id="checkbox" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                 <span class="checkbox-label w-form-label">Add To Favorites</span>
+              <% end %>
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <div class="prev_comments_wrapper">
+        <label for="name" class="commentry_title">Previous Comments:</label>
+      <%if !(@work.comments.empty?) %>
+        <% @work.comments.each do |comment| %>
+
+          <div class="prev_comments">
+            <div class="comment_metadata">
+              <h5 class="comment_author"><%= User.find(comment.user_id).name %></h5>
+            </div>
+
+          <p class="paragraph"><%=comment.content%></p>
+            <% if comment.user_id == current_user.id %>
+              <form class="go_to_edit" action="/user/edit" method="POST">
+                <input id="hidden" type="hidden" name="_method" value="PATCH">
+                <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
+                <div class="form_submit_button_block">
+                  <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
+                  <label class="w-checkbox favorites_checkbox">
+                </div>
+              </form>
+            </div>
+            <% end %>
+
+        <% end %>
+      <% else %>
+        <h5 class="comment_author"><%= "No comments yet.  Be the first to comment!" %></h5>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,11 +20,15 @@ class UsersController < ApplicationController
   end
 
   patch '/user/edit' do
+    @comment=Comment.find(params[:comment_id])
     binding.pry
+    if @comment.user_id == current_user.id
+      @work = Work.find(@comment.work_id)
+      erb :"user/edit"
+    else
+      redirect to "/user/#{@current_user.slug}"
+    end
   end
-
-
-
 
   get '/user/:slug' do
     @user = User.find_by_slug(params[:slug])

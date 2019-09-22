@@ -321,6 +321,7 @@
   padding-top: 36px;
   padding-right: 40px;
   padding-left: 40px;
+  padding-bottom: 20px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -363,6 +364,22 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.user-status {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.title-buffer {
+  margin-left: 40px;
+}
+
+.reference_link {
+  color: #333333;
+  text-decoration: underline;
+  font-size: 30px;
+
 }
 
 .image {
@@ -535,4 +552,11 @@
   text-align: center;
   color: #242424;
   text-decoration: none;
+}
+
+.click_for_details {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
 }
