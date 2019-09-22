@@ -37,7 +37,7 @@
             <input type="submit" value="Submit" data-wait="Please wait..." class="comment_submit w-button">
             <label class="w-checkbox favorites_checkbox">
 
-              <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id }) %>
+              <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id })  %>
                 <input type="checkbox" id="checkbox" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
                  <span class="checkbox-label w-form-label">Remove From Favorites</span>
               <% else %>
@@ -53,22 +53,25 @@
         <label for="name" class="commentry_title">Previous Comments:</label>
       <%if !(@work.comments.empty?) %>
         <% @work.comments.each do |comment| %>
-        <div class="prev_comments">
-          <div class="comment_metadata">
-            <h5 class="comment_author"><%= User.find(comment.user_id).name %></h5>
-          </div>
-          <p class="paragraph"><%=comment.content%></p>
-          <% if comment.user_id == current_user.id %>
-            <form class="go_to_edit" action="/user/edit" method="POST">
-              <input id="hidden" type="hidden" name="_method" value="PATCH">
-              <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
-              <div class="form_submit_button_block">
-                <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
-                <label class="w-checkbox favorites_checkbox">
-          </form>
-          <% end %>
 
-        </div>
+          <div class="prev_comments">
+            <div class="comment_metadata">
+              <h5 class="comment_author"><%= User.find(comment.user_id).name %></h5>
+            </div>
+
+          <p class="paragraph"><%=comment.content%></p>
+            <% if comment.user_id == current_user.id %>
+              <form class="go_to_edit" action="/user/edit" method="POST">
+                <input id="hidden" type="hidden" name="_method" value="PATCH">
+                <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
+                <div class="form_submit_button_block">
+                  <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
+                  <label class="w-checkbox favorites_checkbox">
+                </div>
+              </form>
+            </div>
+            <% end %>
+
         <% end %>
       <% else %>
         <h5 class="comment_author"><%= "No comments yet.  Be the first to comment!" %></h5>
