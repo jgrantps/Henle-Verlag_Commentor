@@ -6,7 +6,6 @@ class Work < ActiveRecord::Base
   has_many :comments
   has_many :users, through: :comments
 
-  has_many :favorited_works
-  has_many :favorites, through: :favorited_works
+  has_many :favorites
 
 end

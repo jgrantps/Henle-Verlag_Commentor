@@ -1,4 +1,4 @@
-/* Generated on: Sat Sep 21 2019 19:10:17 GMT+0000 (UTC) */
+/* Generated on: Sun Sep 22 2019 15:54:38 GMT+0000 (UTC) */
 /* ==========================================================================
    normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css
    ========================================================================== */
@@ -312,9 +312,12 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 400px;
+  height: auto;
   max-width: 750px;
+  min-height: 400px;
+  margin-top: 20px;
   margin-right: 1px;
+  margin-bottom: 20px;
   padding-top: 36px;
   padding-right: 40px;
   padding-left: 40px;
@@ -381,6 +384,7 @@
 
 .form {
   height: 250px;
+  margin-top: 10px;
   padding-right: 0px;
   padding-left: 0px;
 }
@@ -439,4 +443,58 @@
 
 .sub_category-wrapper {
   width: 195px;
+}
+
+.prev_comments {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 13px 5px;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
+.comment_author {
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.comment_metadata {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.italic-text {
+  padding-right: 20px;
+}
+
+.go_to_edit {
+  color: #302f2f;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.paragraph {
+  margin-top: 10px;
+}
+
+.list-item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.list {
+  padding-left: 20px;
 }
