@@ -36,13 +36,19 @@ post '/login' do
 end
 
 post '/user/post' do
+  @work = Work.find(params[:work_id])
+  @composer = @work.composer
+  binding.pry
+
   if params[:add_to_favorites?] == "on"
     @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :work_id => params[:work_id])
-    binding.pry
-  #   if
-  #   @favorite_item = FavoritedWork.create(:work_id => params[:work_id], :favorite_id => current_user.favorites)
-  # @user.
   end
+
+  if !(params[:comments].empty?)
+    @comment = Comment.find_or_create_by(:content => params[:comments], :user_id => current_user.id, :work_id => params[:work_id])
+  end
+binding.pry
+  redirect to "/composer/feature/#{@composer.slug}"
 end
 
 get '/user/:slug' do

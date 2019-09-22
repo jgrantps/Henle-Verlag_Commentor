@@ -45,16 +45,22 @@
 
       <div class="prev_comments_wrapper">
         <label for="name" class="commentry_title">Previous Comments:</label>
+      <%if !(@work.comments.empty?) %>
+        <% @work.comments.each do |comment| %>
         <div class="prev_comments">
           <div class="comment_metadata">
-            <h5 class="comment_author">Author name(Link)</h5>
-            <div class="favorite_indicator">
-              <em class="italic-text">Favorited</em>
-            </div>
+            <h5 class="comment_author"><%= User.find(comment.user_id).name %></h5>
           </div>
-          <p class="paragraph">this is the content of the previous comments!</p>
-          <a href="#" class="go_to_edit">EDIT</a>
+          <p class="paragraph"><%=comment.content%></p>
+          <% if comment.user_id == current_user.id %>
+            <a href="/user/edit" class="go_to_edit">EDIT</a>
+          <% end %>
+
         </div>
+        <% end %>
+      <% else %>
+        <h5 class="comment_author"><%= "No comments yet.  Be the first to comment!" %></h5>
+      <% end %>
       </div>
     </div>
   </div>
