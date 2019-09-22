@@ -4,7 +4,7 @@
 <div class="alphabet-bar">
   <div class="navbar-wrapper-container">
     <div class="div-block">
-      <div>Logged in as: <strong><%=current_user.name%></strong></div>
+      <div>Logged in as: <strong><a href="/user/<%=current_user.slug%>"><%=current_user.name%></strong></a></div>
       <form action ="/logout" method="GET"><input type="submit" value="Log Out" class="logout w-button"></form>
   </div>
   <div class="alphabet-wrapper">

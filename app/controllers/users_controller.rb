@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   post '/user/post' do
-    binding.pry
+    # binding.pry
     @work = Work.find(params[:work_id])
     @composer = @work.composer
-    binding.pry
+    # binding.pry
 
     if params[:add_to_favorites?] == "on"
       @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :work_id => params[:work_id])
@@ -16,9 +16,14 @@ class UsersController < ApplicationController
     if !(params[:comments].empty?)
       @comment = Comment.find_or_create_by(:content => params[:comments], :user_id => current_user.id, :work_id => params[:work_id])
     end
-  binding.pry
-    redirect to "/composer/feature/#{@composer.slug}"
+  # binding.pry
+    redirect to "/user/#{@current_user.slug}"
   end
+
+  patch '/user/edit' do
+    binding.pry
+  end
+
 
 
 
