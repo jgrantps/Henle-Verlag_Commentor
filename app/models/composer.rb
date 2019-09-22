@@ -31,7 +31,7 @@ class Composer < ActiveRecord::Base
          category = breadcrumb.css("li")[0].text
          subcategory = breadcrumb.css("li")[1].text
          @work_category = Category.find_or_create_by(:name => category)
-         @work_subcategory = Subcategory.find_or_create_by(:name => subcategory, :category_id => Category.last.id)
+         @work_subcategory = Subcategory.find_or_create_by(:name => subcategory, :category_id => @work_category.id)
          Work.find_or_create_by(:name => title, :image_url => "https://www.henle.de#{image_link}", :link_url => "https://www.henle.de#{showpage_link}", :composer_id => self.id, :subcategory_id => @work_subcategory.id)
        end
      end

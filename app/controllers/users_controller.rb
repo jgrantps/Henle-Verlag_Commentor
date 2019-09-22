@@ -9,7 +9,7 @@ post '/signup' do
 
   if @user.save
     session[:user_id] = @user.id
-    redirect to :'user/#{@user.slug}'
+    redirect to :"user/#{@user.slug}"
   else
     redirect to :'user/signup'
   end
@@ -37,11 +37,12 @@ end
 
 post '/user/post' do
   if params[:add_to_favorites?] == "on"
-    @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :name => "#{current_user.name}'s list of favorites")
-    if
-    @favorite_item = FavoritedWork.create(:work_id => params[:work_id], :favorite_id => current_user.favorites)
-  @user.
-
+    @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :work_id => params[:work_id])
+    binding.pry
+  #   if
+  #   @favorite_item = FavoritedWork.create(:work_id => params[:work_id], :favorite_id => current_user.favorites)
+  # @user.
+  end
 end
 
 get '/user/:slug' do
