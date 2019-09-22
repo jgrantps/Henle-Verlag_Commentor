@@ -36,8 +36,14 @@
           <div class="form_submit_button_block">
             <input type="submit" value="Submit" data-wait="Please wait..." class="comment_submit w-button">
             <label class="w-checkbox favorites_checkbox">
-              <input type="checkbox" id="checkbox" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
-              <span class="checkbox-label w-form-label">Add To Favorites</span>
+
+              <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id }) %>
+                <input type="checkbox" id="checkbox" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                 <span class="checkbox-label w-form-label">Remove From Favorites</span>
+              <% else %>
+                 <input type="checkbox" id="checkbox" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                 <span class="checkbox-label w-form-label">Add To Favorites</span>
+              <% end %>
             </label>
           </div>
         </form>
