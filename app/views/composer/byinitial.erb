@@ -3,9 +3,11 @@
   <h3><%=flash[:message]%></h3>
   <%end%>
 
-<ul>
-  <%@initial.composers.all.each do |composer|%>
-  <a href="/composer/feature/<%=composer.slug%>" value="slug"> <%=composer.name%></a><br>
-  <%end%>
 
-</ul>
+  <%@initial.composers.all.each do |composer|%>
+    <div class= "composer-bar" >
+      <a class="composer_heading" href="/composer/feature/<%=composer.slug%>" value="slug">
+        <h3 class="composer_heading"><%=composer.name%></h3>
+      </a>
+    </div>
+  <%end%>
