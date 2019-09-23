@@ -1,2 +1,82 @@
-<h2> user edit page!</h2>
-<%= erb :"templates/comment_edit"%>
+<div class="unit-block">
+    <div class="lefty">
+      <div class="lefty_upper">
+        <div class="sub_category-wrapper">
+          <h5><%=@work.composer.name%></h5>
+          <h6 class="category_subcategory_attr"><%= @work.subcategory.category.name%> &gt; <%= @work.subcategory.name %></h6>
+        </div>
+        <img src="<%= @work.image_url %>" height="258" alt="<%= @work.name %>" class="image">
+        <h5 class="details_attr"><a  class="click_for_details" href="<%= @work.link_url%>" target="_blank">CLICK HERE FOR DETAILS</a></h5>
+      </div>
+    <div class="favorites_list_wrapper">
+      <h5>Considered a favorite by:</h5>
+      <ul class="list">
+        <%if @work.favorites.empty? %>
+          <li><div><%="No one yet.. be the first to favorite!"%></div></li>
+        <%else%>
+          <% @work.favorites.each do |t|%>
+            <% fan = User.find(t.user_id)%>
+            <li class="list-item"><div><%= fan.name%></div></li>
+          <%end%>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+
+  <div class="righty">
+    <div class="righty_upper">
+      <h4 class="name_attr"><%= @work.name %></h4>
+    </div>
+
+    <div class="form-block w-form">
+      <form action ="/user/edit" method="POST" class="form">
+        <input id="hidden" type="hidden" name="_method" value="PATCH">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
+        <label for="comments" class="commentry_title">edit comment:</label>
+        <textarea name="comment" maxlength="5000" id="comments" class="textarea w-input" placeholder="<%=@comment.content%>"></textarea>
+        <div class="form_submit_button_block">
+          <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
+        </div>
+      </form>
+    </div>
+
+      <form action ="/user/edit" method="POST" class="form_empty">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
+        <div class="form_submit_button_block">
+          <input type="submit" value="DELETE" data-wait="Please wait..." class="comment_submit w-button">
+        </div>
+      </form>
+
+    <div class="prev_comments_wrapper">
+      <label for="name" class="commentry_title">Other comments on this work:</label>
+
+
+
+    <%if !(@work.comments.empty?) %>
+      <% @work.comments.each do |comment| %>
+        <%unless comment.id == @comment.id %>
+          <div class="prev_comments">
+            <div class="comment_metadata">
+              <h5 class="comment_author"><%= User.find(comment.user_id).name %></h5>
+            </div>
+
+          <p class="paragraph"><%=comment.content%></p>
+          <% if comment.user_id == current_user.id %>
+            <form class="go_to_edit" action="/user/edit" method="POST">
+              <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
+              <div class="form_submit_button_block">
+                <input type="submit" value="EDDDIT" data-wait="Please wait..." class="comment_submit w-button">
+                <label class="w-checkbox favorites_checkbox">
+              </div>
+            </form>
+            <% end %>
+            </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <h5 class="comment_author"><%= "No comments yet.  Be the first to comment!" %></h5>
+    <% end %>
+    </div>
+  </div>
+</div>

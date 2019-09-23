@@ -1,9 +1,9 @@
 <div class="title_wrapper">
-  <h2 class="heading_primary">welcome back, <%=@user.name%>!</h2>
-  <h3> Your list of current favorites: </h3>
+  <h3 class="heading_primary"><%=@user.name.capitalize%>'s dashboard</h3>
+  <h3> List of current favorites: </h3>
 </div>
 
-<%current_user.favorites.each do |favorite| %>
+<%@user.favorites.each do |favorite| %>
 
   <%@work = Work.find(favorite.work_id)%>
 <li>  <%= erb :"templates/import_sandbox"%></li>
