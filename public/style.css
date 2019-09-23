@@ -402,18 +402,26 @@
 }
 
 .form {
-  height: 250px;
+  height: auto;
   margin-top: 10px;
   padding-right: 0px;
   padding-left: 0px;
 }
 
+.form_empty {
+  height: auto;
+}
+
 .form-block {
-  height: 250px;
+  height: auto;
   -webkit-box-flex: 0;
   -webkit-flex: 0 auto;
   -ms-flex: 0 auto;
   flex: 0 auto;
+}
+
+.commentry_title {
+  margin-top: 15px;
 }
 
 .form_submit_button_block {

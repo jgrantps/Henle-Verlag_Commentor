@@ -2,6 +2,7 @@
       <div class="lefty">
         <div class="lefty_upper">
           <div class="sub_category-wrapper">
+            <h5><%=@work.composer.name%></h5>
             <h6 class="category_subcategory_attr"><%= @work.subcategory.category.name%> &gt; <%= @work.subcategory.name %></h6>
           </div>
           <img src="<%= @work.image_url %>" height="258" alt="<%= @work.name %>" class="image">

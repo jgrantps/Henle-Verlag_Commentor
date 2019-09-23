@@ -29,25 +29,39 @@
     </div>
 
     <div class="form-block w-form">
-      <form action ="/user/post" method="POST" class="form">
-        <input id="hidden" type="hidden" name="work_id" value="<%=@work.id%>">
+      <form action ="/user/edit" method="POST" class="form">
+        <input id="hidden" type="hidden" name="_method" value="PATCH">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
         <label for="comments" class="commentry_title">edit comment:</label>
-        <textarea name="comments" maxlength="5000" id="comments" class="textarea w-input" placeholder="<%=@comment.content%>"></textarea>
+        <textarea name="comment" maxlength="5000" id="comments" class="textarea w-input" placeholder="<%=@comment.content%>"></textarea>
         <div class="form_submit_button_block">
-          <input type="submit" value="Submit" data-wait="Please wait..." class="comment_submit w-button">
-          <label class="w-checkbox favorites_checkbox">
-
-            <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id })  %>
-              <input type="checkbox" id="checkbox1" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
-              <span class="checkbox-label w-form-label">Remove From Favorites</span>
-            <% else %>
-               <input type="checkbox" id="checkbox2" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
-               <span class="checkbox-label w-form-label">Add To Favorites</span>
-            <% end %>
-          </label>
+          <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
         </div>
       </form>
     </div>
+
+      <form action ="/user/edit" method="POST" class="form_empty">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
+        <div class="form_submit_button_block">
+          <input type="submit" value="DELETE" data-wait="Please wait..." class="comment_submit w-button">
+        </div>
+      </form>
+
+
+
+      <!-- <form action="/user/edit" method="POST" class="form">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
+        <div class="form_submit_button_block">
+        </div>
+        <form action ="/user/edit" method="POST" class="form_delete">
+        <h2>hello?</h2>
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
+        <input type="submit" value="DELETE" data-wait="Please wait..." class="comment_submit w-button">
+        </form
+      </form> -->
 
     <div class="prev_comments_wrapper">
       <label for="name" class="commentry_title">Other comments on this work:</label>
@@ -67,7 +81,7 @@
             <form class="go_to_edit" action="/user/edit" method="POST">
               <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
               <div class="form_submit_button_block">
-                <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
+                <input type="submit" value="EDDDIT" data-wait="Please wait..." class="comment_submit w-button">
                 <label class="w-checkbox favorites_checkbox">
               </div>
             </form>
