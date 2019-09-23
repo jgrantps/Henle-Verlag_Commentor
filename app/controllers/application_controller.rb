@@ -58,6 +58,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/test' do
+    erb :'templates/code_cuttings'
+  end
+
 
   helpers do
       # def signup_form_incomplete?(params)
