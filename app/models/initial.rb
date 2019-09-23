@@ -23,10 +23,11 @@ after_create :scrape_page
 
   def add_to_db(composers)
     composers.each do |composer|
+      composer_name = composer.gsub(",","")
       last_first = composer.insert(-1, ",").split(" ").rotate(-1).join(" ")
       composer_formatted = URI.parse "#{URI.encode(last_first)}"
       url = "https://www.henle.de/en/search/?Composers="+"#{composer_formatted}"
-      Composer.find_or_create_by(:name => composer, :url => url, :initial_id => self[:id] )
+      Composer.find_or_create_by(:name => composer_name, :url => url, :initial_id => self[:id] )
     end
   end
 

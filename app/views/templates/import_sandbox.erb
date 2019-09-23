@@ -61,7 +61,6 @@
           <p class="paragraph"><%=comment.content%></p>
           <% if comment.user_id == current_user.id %>
             <form class="go_to_edit" action="/user/edit" method="POST">
-              <input id="hidden" type="hidden" name="_method" value="PATCH">
               <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
               <div class="form_submit_button_block">
                 <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">

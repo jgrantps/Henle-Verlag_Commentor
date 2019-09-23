@@ -19,13 +19,17 @@ class UsersController < ApplicationController
     redirect to "/user/#{@current_user.slug}"
   end
 
-  patch '/user/edit' do
+
+
+
+  post '/user/edit' do
     @comment=Comment.find(params[:comment_id])
-    binding.pry
+    # binding.pry
     if @comment.user_id == current_user.id
       @work = Work.find(@comment.work_id)
       erb :"user/edit"
     else
+      #!!!!!!INSERT A FLASH ERROR MESSAGE!!!!!!!!
       redirect to "/user/#{@current_user.slug}"
     end
   end
