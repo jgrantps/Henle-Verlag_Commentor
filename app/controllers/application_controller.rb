@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :'user/signup'
+    redirect to :"/"
   end
 
   post '/signup' do
@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect to :"user/#{@user.slug}"
     else
-      redirect to :'user/signup'
+      redirect to :'/'
     end
   end
 
@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
       @user = User.find_by(session[:user_id])
       redirect to :"user/#{@user.slug}"
     else
-      erb :'user/login'
+      redirect to :"/"
     end
   end
 
@@ -45,14 +45,14 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect to :"user/#{@user.slug}"
     else
-      redirect to :"/login"
+      redirect to :"/"
     end
   end
 
   get '/logout' do
     if logged_in?
       session.clear
-      redirect "/login"
+      redirect "/"
     else
       redirect '/'
     end
@@ -64,10 +64,6 @@ class ApplicationController < Sinatra::Base
 
 
   helpers do
-      # def signup_form_incomplete?(params)
-      #   (params[:name].empty? || params[:email].empty? || params[:password].empty?)
-      # end
-
       def current_user
         @current_user ||= User.find_by(id: session[:user_id])
       end

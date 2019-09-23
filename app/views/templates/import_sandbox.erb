@@ -1,4 +1,3 @@
-<div class="section">
   <div class="unit-block">
       <div class="lefty">
         <div class="lefty_upper">
@@ -38,10 +37,10 @@
             <label class="w-checkbox favorites_checkbox">
 
               <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id })  %>
-                <input type="checkbox" id="checkbox" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                <input type="checkbox" id="checkbox1" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
                  <span class="checkbox-label w-form-label">Remove From Favorites</span>
               <% else %>
-                 <input type="checkbox" id="checkbox" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
+                 <input type="checkbox" id="checkbox2" name="add_to_favorites?" data-name="Checkbox" class="w-checkbox-input">
                  <span class="checkbox-label w-form-label">Add To Favorites</span>
               <% end %>
             </label>
@@ -79,4 +78,3 @@
       </div>
     </div>
   </div>
-</div>
