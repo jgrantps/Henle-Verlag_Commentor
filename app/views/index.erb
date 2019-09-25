@@ -1,8 +1,5 @@
 <% if logged_in? %>
-  <div class="nav">
-    <a href="/logout"><button type="button">Log out</button></a>
-    <a href="/tweets/new"><button type="button">Fix Me!!</button></a>
-  </div>
+  <%= redirect to :"/user/#{current_user.slug}"%>
 <% else %>
   <%= erb :"templates/welcome" %>
 <% end %>

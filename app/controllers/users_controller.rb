@@ -14,30 +14,34 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/user/post' do
-
-    @work = Work.find(params[:work_id])
-    @composer = @work.composer
-
-    if params[:add_to_favorites?] == "on"
-      @favorite = Favorite.find_or_create_by(:user_id => current_user.id, :work_id => params[:work_id])
-    elsif params[:remove_from_favorites?] == "on"
-      @favorite = Favorite.find_by(:user_id => current_user.id, :work_id => params[:work_id])
-      @favorite.destroy
+  get '/login' do
+    if logged_in?
+      @user = User.find_by(session[:user_id])
+      redirect to :"user/#{@user.slug}"
+    else
+      redirect to :"/"
     end
-
-    if !(params[:comments].empty?)
-      @comment = Comment.find_or_create_by(:content => params[:comments], :user_id => current_user.id, :work_id => params[:work_id])
-    end
-
-    redirect to "/user/#{@current_user.slug}"
   end
 
+  post '/login' do
+    @user = User.find_by(name: params[:name])
 
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to :"user/#{@user.slug}"
+    else
+      redirect to :"/"
+    end
+  end
 
-
-
-
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect "/"
+    else
+      redirect '/'
+    end
+  end
 
   get '/user/:slug' do
     @user = User.find_by_slug(params[:slug])

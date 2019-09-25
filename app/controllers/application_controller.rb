@@ -15,50 +15,16 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/login' do
-    if logged_in?
-      @user = User.find_by(session[:user_id])
-      redirect to :"user/#{@user.slug}"
-    else
-      redirect to :"/"
-    end
-  end
-
-  post '/login' do
-    @user = User.find_by(name: params[:name])
-
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect to :"user/#{@user.slug}"
-    else
-      redirect to :"/"
-    end
-  end
-
-  get '/logout' do
-    if logged_in?
-      session.clear
-      redirect "/"
-    else
-      redirect '/'
-    end
-  end
-
-  get '/test' do
-    erb :'templates/code_cuttings'
-  end
-
-
   helpers do
-      def current_user
-        @current_user ||= User.find_by(id: session[:user_id])
-      end
-
-      def logged_in?
-        !!current_user
-      end
-
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
     end
+
+    def logged_in?
+      !!current_user
+    end
+  end
+
 
 
 end

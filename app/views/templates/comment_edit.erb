@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-block w-form">
-      <form action ="/user/edit" method="POST" class="form">
+      <form action ="/comment/edit" method="POST" class="form">
         <input id="hidden" type="hidden" name="_method" value="PATCH">
         <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
         <label for="comments" class="commentry_title">edit comment:</label>
@@ -40,7 +40,7 @@
       </form>
     </div>
 
-      <form action ="/user/edit" method="POST" class="form_empty">
+      <form action ="/comment/edit" method="POST" class="form_empty">
         <input id="hidden" type="hidden" name="_method" value="DELETE">
         <input id="hidden" type="hidden" name="comment_id" value="<%=@comment.id%>">
         <div class="form_submit_button_block">
@@ -63,10 +63,10 @@
 
           <p class="paragraph"><%=comment.content%></p>
           <% if comment.user_id == current_user.id %>
-            <form class="go_to_edit" action="/user/edit" method="POST">
+            <form class="go_to_edit" action="/comment/edit" method="POST">
               <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
               <div class="form_submit_button_block">
-                <input type="submit" value="EDDDIT" data-wait="Please wait..." class="comment_submit w-button">
+                <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
                 <label class="w-checkbox favorites_checkbox">
               </div>
             </form>

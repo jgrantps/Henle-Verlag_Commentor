@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-block w-form">
-        <form action ="/user/post" method="POST" class="form">
+        <form action ="/comment/post" method="POST" class="form">
           <input id="hidden" type="hidden" name="work_id" value="<%=@work.id%>">
           <label for="comments" class="commentry_title">comment:</label>
           <textarea name="comments" maxlength="5000" id="comments" class="textarea w-input"></textarea>
@@ -61,7 +61,7 @@
 
           <p class="paragraph"><%=comment.content%></p>
           <% if comment.user_id == current_user.id %>
-            <form class="go_to_edit" action="/user/edit" method="POST">
+            <form class="go_to_edit" action="/comment/edit" method="POST">
               <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
               <div class="form_submit_button_block">
                 <input type="submit" value="EDIT" data-wait="Please wait..." class="comment_submit w-button">
