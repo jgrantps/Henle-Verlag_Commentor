@@ -15,20 +15,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/signup' do
-    redirect to :"/"
-  end
-
-  post '/signup' do
-    @user = User.new(params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect to :"user/#{@user.slug}"
-    else
-      redirect to :'/'
-    end
-  end
-
   get '/login' do
     if logged_in?
       @user = User.find_by(session[:user_id])
