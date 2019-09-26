@@ -91,6 +91,10 @@
   box-shadow: 0px 0px 3px 1px #3898ec;
 }
 
+.general_flash {
+  margin-left: 40px;
+}
+
 .button {
   position: relative;
   z-index: 51;
@@ -522,13 +526,18 @@
   margin-bottom: 5px;
 }
 
+.list-item-indented {
+  padding-left: 40px;
+  margin-bottom: 5px;
+}
+
 .list {
   padding-left: 20px;
 }
 
 .title_wrapper {
   width: 100%;
-  margin-top: 120px;
+  margin-top: 20px;
   padding-left: 60px;
 }
 

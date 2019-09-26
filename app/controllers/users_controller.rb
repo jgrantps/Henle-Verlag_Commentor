@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     @user = User.new(params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = "Congratulations #{current_user.name.capitalize}, you have successfully signed up!"
       redirect to :"user/#{@user.slug}"
     else
+      flash[:error] = "Oops, something went wrong."
       redirect to :'/'
     end
   end
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to :"user/#{@user.slug}"
     else
+      flash[:error] = "Oops, something went wrong."
       redirect to :"/"
     end
   end
@@ -48,6 +51,7 @@ class UsersController < ApplicationController
       @user = User.find_by_slug(params[:slug])
       erb :'user/profile'
     else
+      flash[:error] = "Oops, something went wrong."
       redirect to :"/"
     end
   end

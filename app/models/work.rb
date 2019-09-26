@@ -8,4 +8,6 @@ class Work < ActiveRecord::Base
 
   has_many :favorites
 
+  include Concerns::InstanceMethods
+  extend Concerns::ClassMethods
 end
