@@ -1,0 +1,41 @@
+<div class="index_hero">
+    <div class="welcome_wrapper">
+        <div class="welcome_box">
+            <div>
+                <h1 class="hero-heading-1">Welcome to the Henle Verlag Commentary Platform!</h1>
+            </div>
+            <div class="div-block">
+                <div class="welcome-page-form-wrapper">
+                    <div class="welcome-options-title-wrapper">
+                        <h3 class="signin-options-heading">Sign In:</h3>
+                    </div>
+                    <div class="form-block-2 w-form">
+                        <form action="/login" method="post">
+                            <label for="name">Username</label>
+                            <input type="text" class="w-input" maxlength="256" name="name" id="name">
+                            <label for="password">Password</label>
+                            <input type="password" class="w-input" maxlength="256" name="password" id="password" required="">
+                            <input type="submit" value="Sign In" data-wait="Please wait..." class="comment_submit w-button">
+                        </form>
+                    </div>
+                </div>
+                <div class="welcome-page-form-wrapper">
+                    <div class="welcome-options-title-wrapper">
+                        <h3 class="signin-options-heading">Not a user? create an account:</h3>
+                    </div>
+                    <div class="form-block-2 w-form">
+                        <form action="/signup" method="post">
+                            <label for="name">Name</label>
+                            <input type="text" class="w-input" maxlength="256" name="name" id="name">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="w-input" maxlength="256" name="email" id="email" required="">
+                            <label for="password">Password</label>
+                            <input type="password" class="w-input" maxlength="256" name="password" id="password" required="">
+                            <input type="submit" value="Sign Up" data-wait="Please wait..." class="comment_submit w-button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

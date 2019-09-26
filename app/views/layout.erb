@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Henle Commentor</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body class="body">
+
+<div class="container">
+  <% if flash.has_key?(:error) %>
+    <div class="general_flash"><h3><%=flash[:error]%></h3></div>
+    <%end%>
+
+<% if logged_in? %>
+<%= erb :"templates/alphabet_banner" %>
+<% end %>
+
+      <%= yield %>
+
+    </div>
+
+  </body>
+</html>

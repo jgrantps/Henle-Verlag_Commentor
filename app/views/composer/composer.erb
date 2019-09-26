@@ -1,0 +1,9 @@
+<div class="title-buffer">
+<h2><a class="reference_link" href="<%=@composer.url%>" target="_blank"><%=@composer.name.gsub(",","")%></a></h2>
+</div>
+<li>
+<%@composer.works.each do |work| %>
+<%@work = work%>
+<%= erb :"templates/main_block"%>
+<% end %>
+</li>

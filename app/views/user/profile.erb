@@ -1,0 +1,17 @@
+<div class="title_wrapper">
+  <h3 class="heading_primary"><%=@user.name.capitalize%>'s dashboard</h3>
+  <h3> List of current favorites: </h3>
+  <%@user.favorites.each do |favorite| %>
+  <%@work = Work.find(favorite.work_id)%>
+  <li class="list-item-indented"><a class="click_for_details" href="/composer/feature/<%= @work.composer.slug %>#<%= @work.slug%>"><%= @work.composer.name %> - <%= @work.name%></a></li>
+  <% end %>
+</div>
+
+<div class="title_wrapper">
+  <h3> List of commented works: </h3>
+</div>
+<%@user.works.uniq.each do |work| %>
+
+  <%@work = work%>
+<li>  <%= erb :"templates/main_block"%></li>
+<% end %>

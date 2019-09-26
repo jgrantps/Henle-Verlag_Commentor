@@ -1,0 +1,14 @@
+<h2> Composers in the Catalog that start with the letter <%=@initial.initial%>:</h2>
+
+<% if flash.has_key?(:message) %>
+  <h3><%=flash[:message]%></h3>
+  <%end%>
+
+
+  <%@initial.composers.all.each do |composer|%>
+    <div class= "composer-bar" >
+      <a class="composer_heading" href="/composer/feature/<%=composer.slug%>" value="slug">
+        <h3 class="composer_heading"><%=composer.name.gsub(",","")%></h3>
+      </a>
+    </div>
+  <%end%>
