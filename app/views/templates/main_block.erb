@@ -16,7 +16,7 @@
           <%else%>
             <% @work.favorites.each do |t|%>
               <% fan = User.find(t.user_id)%>
-              <li class="list-item"><div><%= fan.name%></div></li>
+              <li class="list-item"><a class="click_for_details" href="/user/<%= fan.slug %>"><div><%= fan.name%></div></a></li>
             <%end%>
           <%end%>
         </ul>
@@ -37,7 +37,7 @@
             <input type="submit" value="Submit" data-wait="Please wait..." class="comment_submit w-button">
             <label class="w-checkbox favorites_checkbox">
 
-              <% if !!(@work.favorites.detect {|favorite| favorite.user_id == current_user.id })  %>
+              <% if !!(@work.favorites.detect {|favorite| favorite.user == current_user })  %>
                 <input type="checkbox" id="checkbox1" name="remove_from_favorites?" data-name="Checkbox" class="w-checkbox-input">
                 <span class="checkbox-label w-form-label">Remove From Favorites</span>
               <% else %>
@@ -60,7 +60,7 @@
             </div>
 
           <p class="paragraph"><%=comment.content%></p>
-          <% if comment.user_id == current_user.id %>
+          <% if comment.user == current_user %>
             <form class="go_to_edit" action="/comment/edit" method="POST">
               <input id="hidden" type="hidden" name="comment_id" value="<%=comment.id%>">
               <div class="form_submit_button_block">

@@ -6,5 +6,5 @@
 <%@user.favorites.each do |favorite| %>
 
   <%@work = Work.find(favorite.work_id)%>
-<li>  <%= erb :"templates/import_sandbox"%></li>
+<li>  <%= erb :"templates/main_block"%></li>
 <% end %>
