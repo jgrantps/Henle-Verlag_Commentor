@@ -10,8 +10,8 @@
 <div class="title_wrapper">
   <h3> List of commented works: </h3>
 </div>
-<%@user.comments.each do |comment| %>
+<%@user.works.uniq.each do |work| %>
 
-  <%@work = Work.find(comment.work_id)%>
+  <%@work = work%>
 <li>  <%= erb :"templates/main_block"%></li>
 <% end %>
