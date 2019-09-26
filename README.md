@@ -22,7 +22,7 @@ lists.
 
 The nokogiri gem is used to systematically scrape the [henle verlag](https://www.henle.de/en/) website as needed by the user’s browsing behavior.  All data scraped from the website is instantiated via dedicated models and persisted into the application database, including some peripheral elements for potential future functionality.
 
-Contributing
+## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
